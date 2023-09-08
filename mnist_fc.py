@@ -7,7 +7,7 @@ from tensorflow.keras.utils import to_categorical
 from layers.network import Network
 from layers.fc_layer import FCLayer
 from layers.activation_layer import ActivationLayer
-from layers.activations import tanh, tanh_prime
+from layers.activation import tanh, tanh_prime
 from layers.loss import mse, mse_prime
 
 
@@ -21,13 +21,13 @@ x_train /= 255
 
 # encode output which is a number in range [0,9] into a vector of size 10
 # e.g. number 3 will become [0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
-y_train = np_utils.to_categorical(y_train)
+y_train = to_categorical(y_train)
 
 # same for test data : 10000 samples
 x_test = x_test.reshape(x_test.shape[0], 1, 28*28)
 x_test = x_test.astype('float32')
 x_test /= 255
-y_test = np_utils.to_categorical(y_test)
+y_test = to_categorical(y_test)
 
 
 # Network
